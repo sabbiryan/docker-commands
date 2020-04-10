@@ -1,7 +1,7 @@
 # pickup-docker
 Enlarging the docker knowledge with a guide line
 
-#### Docker Common Commands
+#### Docker basic commands
 docker images
 docker ps
 docker ps -a
@@ -40,4 +40,10 @@ CMD (run on container startup)
 COPY (copy files or diretories to container)
 ADD (copy, download, unpack compress files)
 
+#### Image push to docker hub
+docker tag container_id datacrud/debian:1.01
+docker tag container_id dockerhubuserid/debian:1.01
+docker login --username=dockerhubusername
+Login Succeeded
+docker push dockerhubuserid/debian:1.01
 
