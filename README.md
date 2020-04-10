@@ -46,3 +46,28 @@ docker login --username=dockerhubusername <br/>
 Login Succeeded <br/>
 docker push dockerhubuserid/debian:1.01
 
+#### Create containarized web applciation
+git clone -b v0.1 https://github.com/jleetutorial/dockerapp.git <br/>
+cd dockerapp <br/>
+docker build -t dockerapp:v0.1 .<br/>
+docker images <br/>
+docker run -d -p 5000:5000 container_id <br/>
+hit http://localhost:5000/ on your local machine browser, it should up and running <br/>
+docker exec -it 07e39455d1f4 bash <br/>
+pwd  <br/>
+cd /home/admin  <br/>
+ps axu  <br/>
+
+
+
+
+
+
+
+#### Troubleshoot docker for windows
+
+Issue link: https://github.com/docker/for-win/issues/1221 <br/>
+
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All <br/>
+• Reboot, then enable the containers feature. <br/>
+Enable-WindowsOptionalFeature -Online -FeatureName Containers -All <br/>
