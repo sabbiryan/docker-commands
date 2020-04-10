@@ -46,3 +46,19 @@ docker login --username=dockerhubusername <br/>
 Login Succeeded <br/>
 docker push dockerhubuserid/debian:1.01
 
+#### Create containarized web applciation
+git clone -b v0.1 https://github.com/jleetutorial/dockerapp.git <br/>
+cd dockerapp
+docker build -t dockerapp:v0.1 .
+
+
+
+
+#### Troubleshoot docker for windows
+Docker build error: The command '/bin/sh -c pip install Flask==0.11.1' returned a non-zero code: 4294967295: failed to shutdown container: container d00a89ced4f17e4312bcb26fb01bd9f32a7a35393146a331bd35e9d3841a50d2 encountered an error during hcsshim::System::waitBackground: failure in a Windows system call: The virtual machine or container with the specified identifier is not running. (0xc0370110): subsequent terminate failed container d00a89ced4f17e4312bcb26fb01bd9f32a7a35393146a331bd35e9d3841a50d2 encountered an error during hcsshim::System::waitBackground: failure in a Windows system call: The virtual machine or container with the specified identifier is not running. (0xc0370110) <br/><br/>
+
+Issue link: https://github.com/docker/for-win/issues/1221 <br/>
+
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All <br/>
+• Reboot, then enable the containers feature. <br/>
+Enable-WindowsOptionalFeature -Online -FeatureName Containers -All <br/>
