@@ -17,11 +17,14 @@ jobs:
           command: |
             docker-compose up -d
             docker-compose run dockerapp python test.py
+      - run: 
+          name: Evaluting env variaables
+          command: |
+            eval "echo $"${DOCKER_HUB_USER_ID}""
+            eval "echo $"${DOCKER_HUB_PWD}""
       - deploy:
           name: Push appllication Docker image
           command: |
-            eval “echo "{DOCKER_HUB_USER_ID}”"
-            eval “echo "{DOCKER_HUB_PWD}”"
             docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD            
             docker tag pickup-docker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
             docker tag pickup-docker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest            
