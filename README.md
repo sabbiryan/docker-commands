@@ -125,6 +125,8 @@ docker-machine env docker-app-machine <br/>
 eval $docker-machine env docker-app-machine) (for mac)<br/>
 docker info <br/>
 docker-compose -f prod.yml up -d <br/>
+docker-machine ls <br/>
+http://machine-ip:5000/ <br/>
 
 #### Troubleshoot docker for windows
 
