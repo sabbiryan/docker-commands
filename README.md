@@ -121,7 +121,7 @@ docker-machine create --driver digitalocean --digitalocean-access-token your_dig
 docker-machine regenerate-certs docker-app-machine <br/> or
 docker-machine regenerate-certs --client-certs docker-app-machine <br/>
 docker-machine env docker-app-machine <br/>
-REM     @FOR /f "tokens=*" %i IN ('docker-machine env docker-app-machine') DO @%i (for shell) <br/>
+@FOR /f "tokens=*" %i IN ('docker-machine env docker-app-machine') DO @%i (for shell) <br/>
 eval $docker-machine env docker-app-machine) (for mac)<br/>
 docker info <br/>
 docker-compose -f prod.yml up -d <br/>
