@@ -21,12 +21,11 @@ jobs:
           name: Evaluting env variaables
           command: |
             eval "echo $"${DOCKER_HUB_USER_ID}""
-            eval "echo $"${DOCKER_HUB_PWD}""
       - deploy:
           name: Push appllication Docker image
           command: |
             docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD            
-            docker tag pickup-docker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
-            docker tag pickup-docker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest            
+            docker tag pickupdocker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+            docker tag pickupdocker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest            
             docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
             docker push $DOCKER_HUB_USER_ID/dockerapp:latest
