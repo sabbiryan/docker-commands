@@ -73,6 +73,7 @@ docker-componse up -d<br/>
 docker-componse ps<br/>
 docker-componse logs<br/>
 docker-componse logs -f<br/>
+docker-componse down<br/>
 docker-componse build<br/>
 docker-componse rm <br/> 
 
@@ -109,6 +110,8 @@ docker exec -it container_3 ping 127.17.0.3 <br/>
 #### Host & overlay network
 docker run -d --name container_4 --net host busybox sleep 1000 <br/> 
 docker exec -it container_4 ifconfig <br/> 
+
+
 
 #### Troubleshoot docker for windows
 
