@@ -73,6 +73,7 @@ docker-componse up -d<br/>
 docker-componse ps<br/>
 docker-componse logs<br/>
 docker-componse logs -f<br/>
+docker-componse build<br/>
 docker-componse rm<br/> 
 
 
