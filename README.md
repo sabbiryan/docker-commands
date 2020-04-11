@@ -59,10 +59,56 @@ cd /home/admin  <br/>
 ps axu  <br/>
 
 
+#### Mannual linking microservice approch in docker
+docker build -t dockerapp:v0.3 . <br/>
+docker run -d --name redis redis:3.2.0  <br/>
+docker run -d -p 5000:5000 --link redis  dockerapp:v0.3 <br/>
 
+#### docker-compose.yml to manage the microservices linking
+echo >docker-compose.yml <br/>
 
+......edit the docker-compose.yml file in the text edition...... <br/>
 
+docker-componse up -d<br/>
+docker-componse ps<br/>
+docker-componse logs<br/>
+docker-componse logs -f<br/>
+docker-componse build<br/>
+docker-componse rm <br/> 
 
+#### Docker networks
+docker network ls
+docker network inspect bridge
+
+#### Docker none network
+docker run -d --net none busybox sleep 1000
+docker exec -it container_id bin/ash
+ping 8.8.8.8
+ifconfig
+
+#### Docker bridge network
+docker run -d --name container_1 busybox sleep 1000 <br/> 
+docker exec -it container_1 ifconfig <br/> 
+docker run -d --name container_2 busybox sleep 1000 <br/> 
+docker exec container_2 ifconfig <br/> 
+docker exec -it container_1 ping 127.0.0.1 <br/> 
+docker exec -it container_1 ping 8.8.8.8 <br/> 
+
+docker network create --driver bridge my_bridge_network <br/> 
+docker network inspect my_bridge_network <br/> 
+docker run -d --name container_3 --net my_bridge_network busybox sleep 1000 <br/> 
+
+docker exec -it container_3 ifconfig <br/> 
+docker inspect container_1 <br/> 
+docker exec -it container_3 ping 127.17.0.3 <br/> 
+docker network connect bridge container_3 <br/> 
+docker exec -it container_3 ping 127.17.0.3 <br/> 
+docker network disconnect bridge container_3 <br/> 
+docker exec -it container_3 ping 127.17.0.3 <br/> 
+
+#### Host & overlay network
+docker run -d --name container_4 --net host busybox sleep 1000 <br/> 
+docker exec -it container_4 ifconfig <br/> 
 
 #### Troubleshoot docker for windows
 
