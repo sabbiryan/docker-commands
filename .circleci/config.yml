@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run:
+      - run:           
           name: Install dependencies
           command: |
             apk add --no-cache py-pip=9.0.0-r1
@@ -19,10 +19,11 @@ jobs:
             docker-compose run dockerapp python test.py
       - deploy:
           name: Push appllication Docker image
-          command:
-            echo "$DOCKER_HUB_PWD" | docker login --username $DOCKER_HUB_USER_ID --password-stdin
+          command: |
+            eval “echo "{DOCKER_HUB_USER_ID}”"
+            eval “echo "{DOCKER_HUB_PWD}”"
             docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD            
+            docker tag pickup-docker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
             docker tag pickup-docker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest            
+            docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
             docker push $DOCKER_HUB_USER_ID/dockerapp:latest
-            # docker tag pickup-docker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
-            # docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
