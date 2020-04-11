@@ -111,6 +111,9 @@ docker exec -it container_3 ping 127.17.0.3 <br/>
 docker run -d --name container_4 --net host busybox sleep 1000 <br/> 
 docker exec -it container_4 ifconfig <br/> 
 
+#### Run unit test in docker
+docker-compose up -d <br/> 
+docker-compose run dockerapp python test.py <br/> 
 
 
 #### Troubleshoot docker for windows
