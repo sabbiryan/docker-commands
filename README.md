@@ -115,6 +115,11 @@ docker exec -it container_4 ifconfig <br/>
 docker-compose up -d <br/> 
 docker-compose run dockerapp python test.py <br/> 
 
+#### Deploy in production
+docker-machine create --driver digitalocean --digitalocean-access-token your_digitalocean_account_api_access_token docker-app-machine <br/>
+docker-machine regenerate-certs --client-certs docker-app-machine </br>
+docker-machine env docker-app-machine </br>
+
 
 #### Troubleshoot docker for windows
 
