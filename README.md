@@ -59,10 +59,21 @@ cd /home/admin  <br/>
 ps axu  <br/>
 
 
-#### First microservice approch in docker
+#### Mannual linking microservice approch in docker
+docker build -t dockerapp:v0.3 . <br/>
+docker run -d --name redis redis:3.2.0  <br/>
+docker run -d -p 5000:5000 --link redis  dockerapp:v0.3 <br/>
 
+#### docker-compose.yml to manage the microservices linking
+echo >docker-compose.yml <br/>
 
+......edit the docker-compose.yml file in the text edition...... <br/>
 
+docker-componse up -d<br/>
+docker-componse ps<br/>
+docker-componse logs<br/>
+docker-componse logs -f<br/>
+docker-componse rm<br/> 
 
 
 #### Troubleshoot docker for windows
