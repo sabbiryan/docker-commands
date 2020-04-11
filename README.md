@@ -116,10 +116,15 @@ docker-compose up -d <br/>
 docker-compose run dockerapp python test.py <br/> 
 
 #### Deploy in production
-docker-machine create --driver digitalocean --digitalocean-access-token your_digitalocean_account_api_access_token docker-app-machine <br/>
-docker-machine regenerate-certs --client-certs docker-app-machine </br>
-docker-machine env docker-app-machine </br>
-
+docker-machine create --driver digitalocean --digitalocean-access-token your_digitalocean_account_api_access_token docker-app-machine <br/> or
+docker-machine create --driver digitalocean --digitalocean-access-token your_digitalocean_account_api_access_token --digitalocean-image=coreos-stable --digitalocean-ssh-user=core docker-app-machine <br/>
+docker-machine regenerate-certs docker-app-machine <br/> or
+docker-machine regenerate-certs --client-certs docker-app-machine <br/>
+docker-machine env docker-app-machine <br/>
+REM     @FOR /f "tokens=*" %i IN ('docker-machine env docker-app-machine') DO @%i (for shell) <br/>
+eval $docker-machine env docker-app-machine) (for mac)<br/>
+docker info <br/>
+docker-compose -f prod.yml up -d <br/>
 
 #### Troubleshoot docker for windows
 
