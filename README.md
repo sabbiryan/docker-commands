@@ -1,4 +1,4 @@
-# pickup-docker
+# Docker Commands
 Enlarging the docker knowledge with a guide line
 
 #### Docker basic commands
