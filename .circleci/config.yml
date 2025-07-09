@@ -1,19 +1,31 @@
 version: 2
 jobs:
   build:
-    working_directory: /dockerapp
+    working_directory: /pickupdocker
     docker:
       - image: docker:17.05.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
-      - run:
+      - run:           
           name: Install dependencies
           command: |
             apk add --no-cache py-pip=9.0.0-r1
             pip install docker-compose==1.15.0
-      - run:
+      - run:          
           name: Run tests
           command: |
             docker-compose up -d
             docker-compose run dockerapp python test.py
+      - run: 
+          name: Evaluting env variaables
+          command: |
+            eval "echo $"${DOCKER_HUB_USER_ID}""
+      - deploy:
+          name: Push appllication Docker image
+          command: |
+            docker login -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD            
+            docker tag pickupdocker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+            docker tag pickupdocker_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest            
+            docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
+            docker push $DOCKER_HUB_USER_ID/dockerapp:latest
